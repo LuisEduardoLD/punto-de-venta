@@ -1,2 +1,2 @@
-# punto-de-venta
-Punto de venta creado como mínimo producto viable para "PRISMA tech solutions"
+# Punto-de-venta
+ Minimo producto viable; punto de venta para la Startup "PRISMA  Tech Solutions"
