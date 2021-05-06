@@ -13,7 +13,7 @@ def main_home(req):
                 if user.is_admin:
                     return redirect('/admin')
                 else:
-                    if user.id_typoUsuario == 'mesero':
+                    if str(user.id_typoUsuario) == 'mesero':
                         return redirect('/meseros')
                     else:
                         return redirect('/cajeros')
