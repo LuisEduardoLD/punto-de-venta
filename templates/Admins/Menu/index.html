@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} Empleados {% endblock %}
+{% block title %} Productos {% endblock %}
 
 {% block css %}
     <style>
@@ -22,7 +22,7 @@
 
         <div class="row justify-content-center mt-5">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevousuarioModal">
-                Agregar empleado
+                Agregar producto
             </button>
         </div>
 
@@ -32,42 +32,39 @@
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Activo</th>
-                    <th scope="col">Celular</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Precio</th>
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in empleados %}
-                    <tr>
-                        <td>{{ i.first_name }}</td>
-                        <td>{{ i.last_name }}</td>
-                        <td>{% if i.is_active %}
-                            <p>Activo</p>
-                        {% else %}
-                            <p>Inactivo</p>
-                        {% endif %} </td>
-                        <td>{{ i.numero_cel }}</td>
-                        <td>
+                {% for i in insumos %}
+                <tr>
+                <td>{{ i.nombre }}</td>
+                <td>{{ i.descripcion }}</td>
+                <td>{{ i.precio }}</td>
+                <td>{{ i.categoria }}</td>
+
+                                     <td>
                             <div class="row">
                                 <div class="col">
-                                    <a href="{% url 'admin:actualizarempleado' i.pk %}"> <img
+                                    <a href="{% url 'admin:actualizarmenu' i.pk %}"> <img
                                             src="{% static 'recursos/img/actualizar.png' %}"></a>
                                 </div>
 
                                 <div class="col">
-                                    <form method="post" action="{% url 'admin:eliminarempleado' %}">
+                                    <form method="post" action="{% url 'admin:eliminarmenu' %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="pk" value="{{ i.pk }}">
-                                        <input type="hidden" name="tipo" value="{{ tipo_usuario }}">
                                         <button type="submit" id="btnsubmit"></button>
                                     </form>
 
                                 </div>
                             </div>
                         </td>
-                    </tr>
+
+                </tr>
                 {% endfor %}
                 </tbody>
             </table>
@@ -82,7 +79,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo empleado</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar insumos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -95,7 +92,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" id="btnForm">
+                    <button type="submit" class="btn btn-success" id="btnForm">
                         Registrar
                     </button>
                 </div>
@@ -106,13 +103,13 @@
 
     {% block script %}
 
-         <script>
+        <script>
         document.getElementById('btnForm').addEventListener('click', function () {
             document.getElementById('form').submit()
         })
         </script>
-
         <script src="{% static 'js/empleados/empleados.js' %}"></script>
+
 
 
     {% endblock %}

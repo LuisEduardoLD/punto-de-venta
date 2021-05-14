@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from apps.EmpleadosApp.models import *
+from apps.Insumos.models import *
+from ..Insumos.forms import insumosForm
+from ..Productos.forms import menuForm
+from ..Productos.models import Productos
 
 
 def home(req):
@@ -40,7 +44,7 @@ def empleados(req, tipo):
         return render(req, 'Admins/Empleados/empleados.html', params)
 
 
-def actualizarempleado(req, pk):
+def actualizar_empleado(req, pk):
     query = User.objects.get(pk=pk)
     form = usuariosForm(req.POST or None, instance=query)
     if req.method == 'POST' and form.is_valid():
@@ -54,7 +58,7 @@ def actualizarempleado(req, pk):
         return render(req, 'Admins/Empleados/actualizacion.html', params)
 
 
-def eliminarempleado(req):
+def eliminar_empleado(req):
     pk = req.POST['pk']
     if req.method == 'POST':
         User.objects.filter(pk=pk).update(is_active=False)
@@ -68,7 +72,37 @@ def eliminarempleado(req):
 
 
 def insumos(req):
-    return render(req, 'Admins/Insumos/index.html')
+    form = insumosForm(req.POST or None)
+    if req.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('admin:insumos')
+    else:
+        insumos = Insumos.objects.all()
+        params = {
+            'insumos': insumos,
+            'form': form
+        }
+        return render(req, 'Admins/Insumos/index.html', params)
+
+
+def actualizar_insumos(req, pk):
+    query = Insumos.objects.get(pk=pk)
+    form = insumosForm(req.POST or None, instance=query)
+    if req.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('admin:insumos')
+    else:
+        params = {
+            'form': form
+        }
+        return render(req, 'Admins/Insumos/actualizacion.html', params)
+
+
+def eliminar_insumo(req):
+    pk = req.POST['pk']
+    if req.method == 'POST':
+        Insumos.objects.filter(pk=pk).update(activo=False)
+        return redirect('admin:insumos')
 
 
 # <!--------------------- Aqui terminan las URLs para el manejo de la parte de los insumos ---------->
@@ -78,7 +112,37 @@ def insumos(req):
 
 
 def menu(req):
-    pass
+    form = menuForm(req.POST or None)
+    if req.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('admin:menu')
+    else:
+        insumos = Productos.objects.all()
+        params = {
+            'insumos': insumos,
+            'form': form
+        }
+        return render(req, 'Admins/Menu/index.html', params)
+
+
+def actualizar_menu(req, pk):
+    query = Productos.objects.get(pk=pk)
+    form = menuForm(req.POST or None, instance=query)
+    if req.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('admin:menu')
+    else:
+        params = {
+            'form': form
+        }
+        return render(req, 'Admins/Menu/actualizacion.html', params)
+
+
+def eliminar_menu(req):
+    pk = req.POST['pk']
+    if req.method == 'POST':
+        Productos.objects.filter(pk=pk).update(activo=False)
+        return redirect('admin:menu')
 
 
 # <!--------------------- Aqui terminan las URLs para el manejo de la parte del menu ---------->
@@ -87,6 +151,6 @@ def menu(req):
 # <!--------------------- Aqui empiezan las URLs para el manejo de la parte de las promociones ---------->
 
 def promociones(req):
-    pass
+    return render(req, 'Admins/Promociones/index.html')
 
 # <!--------------------- Aqui terminan las URLs para el manejo de la parte de las promociones ---------->
