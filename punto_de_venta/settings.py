@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'apps.AdminsApp',
     'apps.CajerosApp',
     'apps.EmpleadosApp',
+    'apps.Insumos',
     'apps.MainApp',
     'apps.MeserosApp',
+    'apps.Platillos',
+    'apps.Productos',
+    'apps.Promociones',
 ]
 
 MIDDLEWARE = [
