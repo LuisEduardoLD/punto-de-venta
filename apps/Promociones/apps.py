@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PromocionesConfig(AppConfig):
-    name = 'Promociones'
+    name = 'apps.Promociones'

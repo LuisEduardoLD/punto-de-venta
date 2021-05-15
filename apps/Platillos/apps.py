@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PlatillosConfig(AppConfig):
-    name = 'Platillos'
+    name = 'apps.Platillos'
