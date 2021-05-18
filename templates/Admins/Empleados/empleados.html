@@ -38,6 +38,7 @@
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
+
                 <tbody>
                 {% for i in empleados %}
                     <tr>
@@ -70,6 +71,7 @@
                     </tr>
                 {% endfor %}
                 </tbody>
+
             </table>
         </div>
 
@@ -79,18 +81,54 @@
 
     <!-- Modal -->
     <div class="modal fade" id="nuevousuarioModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Nuevo empleado</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="form">
-                        {% csrf_token %}
-                        {{ form.as_p }}
+                        
+                        <div class="col-form-label-lg">
+                            <label for="" class="col col-4"> {{ form.first_name }}</label>
+                            <label for="" class="col col-7"> {{ form.last_name }}</label>
+                            <br>
+                            <hr>
+                            <br>
+                            <label for="" class="col col-4"> {{ form.col }}</label>
+                            <label for="" class="col col-4"> {{ form.calle }}</label>
+                            <label for="" class="col col-3"> {{ form.numero_ext }}</label>
+                            <br>
+                            <hr>
+                            <label for="" class="col col-5"> {{ form.numero_cel }}</label>
+                            <label for="" class="col col-4"> {{ form.fecha_nacimiento }}</label>
+                            <br>
+                            <hr>
+                            
+
+                              
+                        </div>
+                        <div class="form-check-label" style="text-align: center;">
+
+                            <label for="" class="col col-5"> {{ form.username }}</label>
+                            <br>
+                            <div style=""><strong>Activo: </strong></div> 
+                            <br>
+                            <label for="" class="col col-4"> {{ form.is_active }}</label>
+                        </div>
+                        
+
+                        <div class="col-form-label-sm">
+                            <!--
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                        -->
+                        </div>
+
+                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -106,15 +144,18 @@
 
     {% block script %}
 
-         <script>
+        <script>
         document.getElementById('btnForm').addEventListener('click', function () {
             document.getElementById('form').submit()
         })
         </script>
-
         <script src="{% static 'js/empleados/empleados.js' %}"></script>
 
 
     {% endblock %}
 
 {% endblock %}
+
+<!--
+
+-->

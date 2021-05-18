@@ -10,11 +10,6 @@ class usuariosForm(forms.ModelForm):
         ]
 
         widgets = {
-            'is_active': forms.CheckboxInput(
-                attrs={
-                    'class': 'form-control',
-                }
-            ),
             'id_typoUsuario': forms.Select(
                 attrs={
                     'class': 'form-control',
@@ -23,33 +18,39 @@ class usuariosForm(forms.ModelForm):
             'first_name': forms.TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Ingresa el nombre'
+                    'placeholder':'Nombre(s)'
                 }
             ),
             'last_name': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder' : 'Apellidos'
                 }
             ),
             'col': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder' : 'Colonia'
                 }
             ),
             'calle': forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'placeholder' : 'Calle'
+
                 }
             ),
             'numero_ext': forms.TextInput(
                 attrs={
                     'class': 'form-control',
+                    'placeholder' : 'Numero exterior',
                     'type': 'number'
                 }
             ),
             'numero_cel': forms.TextInput(
                 attrs={
                     'class': 'form-control',
+                    'placeholder' : 'Numero de Teléfono (celular)',
                     'type': 'number'
                 }
             ),
@@ -61,7 +62,14 @@ class usuariosForm(forms.ModelForm):
             ),
             'username': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder' : 'Nombre de usuario'
+                }
+            ),
+
+            'is_active': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-control',
                 }
             ),
         }
