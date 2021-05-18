@@ -6,7 +6,7 @@ class usuariosForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'is_active', 'id_typoUsuario', 'first_name', 'last_name', 'col', 'calle', 'numero_ext', 'numero_cel', 'fecha_nacimiento', 'username'
+            'is_active', 'id_typoUsuario', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'col', 'calle', 'numero_ext', 'numero_cel', 'fecha_nacimiento', 'username'
         ]
 
         widgets = {
@@ -26,9 +26,20 @@ class usuariosForm(forms.ModelForm):
                     'placeholder':'Ingresa el nombre'
                 }
             ),
-            'last_name': forms.TextInput(
+            'apellido_paterno': forms.TextInput(
                 attrs={
                     'class': 'form-control'
+                }
+            ),
+            'apellido_materno': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'email': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'email'
                 }
             ),
             'col': forms.TextInput(

@@ -55,7 +55,8 @@ class User(AbstractUser):
 
     id_typoUsuario = models.ForeignKey(typeUser, on_delete=models.CASCADE, null=True)
     first_name = models.CharField('Nombre', max_length=255)
-    last_name = models.CharField('Apellidos', max_length=255)
+    apellido_paterno = models.CharField('Apellido Paterno', max_length=255, default='')
+    apellido_materno = models.CharField('Apellido Materno', max_length=255, default='')
     col = models.CharField('Colonia', max_length=255)
     calle = models.CharField('Calle', max_length=255)
     numero_ext = models.IntegerField('Numero Exterior')
