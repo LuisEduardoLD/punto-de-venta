@@ -42,7 +42,7 @@
                 {% for i in empleados %}
                     <tr>
                         <td>{{ i.first_name }}</td>
-                        <td>{{ i.last_name }}</td>
+                        <td>{{ i.apellido_paterno }} {{ i.apellido_materno }}</td>
                         <td>{% if i.is_active %}
                             <p>Activo</p>
                         {% else %}
@@ -92,7 +92,7 @@
                         {% csrf_token %}
 
                         <div class="row">
-                            {{ form.as_p }}
+                            {{ form.as_table }}
                         </div>
 
                     </form>

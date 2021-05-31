@@ -12,16 +12,34 @@ urlpatterns = [
     path('actualizar_empleado/<int:pk>', actualizar_empleado, name='actualizarempleado'),
     path('eliminar_empleado/', eliminar_empleado, name='eliminarempleado'),
 
-    # URLs para Insumos
-    path('insumos/', insumos, name='insumos'),
-    path('actualizar_insumos/<int:pk>', actualizar_insumos, name='actualizarinsumos'),
-    path('eliminar_insumo/', eliminar_insumo, name='eliminarinsumo'),
+    # URLs para ver los pedidos
+    path('pedidos', pedidos, name='pedidos'),
 
-    # URLs para menu
-    path('menu/', menu, name='menu'),
-    path('actualizar_menu/<int:pk>', actualizar_menu, name='actualizarmenu'),
-    path('eliminar_menu/', eliminar_menu, name='eliminarmenu'),
+    # URLs para ver las cajas
+    path('cajas', cajas, name='cajas'),
 
-    # URLs para menu
-    path('promociones/', promociones, name='promociones'),
+    # URLs para ver las cajas
+    path('tipo_operacion', tipo_operacion, name='tipo_operacion'),
+
+    # URLs para ver las denominaciones
+    path('denominacion', denominacion, name='denominacion'),
+
+    # URLs para ver el uso de cajas
+    path('registro_cajas', registro_cajas, name='registro_cajas'),
+
+    # URLs para ver el manejo de los alimentos
+    path('alimentos', alimentos, name='alimentos'),
+
+    # URLs para ver el manejo de los alimentos
+    path('combos', combos, name='combos'),
+
+    # URLs para ver el manejo de los alimentos
+    path('productos', productos, name='productos'),
+
+    # URLs para ver el manejo de las promociones
+    path('promociones', promociones, name='promos'),
+
+    # URLs para ver el manejo de las promociones
+    path('proveedores', proveedores, name='proveedores'),
+
 ]

@@ -67,19 +67,44 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{% url 'admin:empleados' "MESEROS" %}" >
-                    <i class="fas fa-hamburger"></i>
-                    <span>Meseros</span>
-                </a>
-            </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{% url 'admin:empleados' "CAJEROS" %}">
-                   <i class="fas fa-money-check-alt"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeseros"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-hamburger"></i>
+                    <span>Meseros</span>
+                </a>
+                <div id="collapseMeseros" class="collapse"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opciones:</h6>
+                        <a class="collapse-item" href="{% url 'admin:empleados'  "MESEROS" %}">Empleados</a>
+                        <a class="collapse-item" href="{% url 'admin:pedidos' %}">Pedidos</a>
+{#                        <a class="collapse-item" href="utilities-border.html">Borders</a>#}
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCajeros"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-hamburger"></i>
                     <span>Cajeros</span>
                 </a>
+                <div id="collapseCajeros" class="collapse"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opciones:</h6>
+                        <a class="collapse-item" href="{% url 'admin:empleados'  "CAJEROS" %}">Empleados</a>
+                        <a class="collapse-item" href="{% url 'admin:cajas' %}">Cajas</a>
+                        <a class="collapse-item" href="{% url 'admin:tipo_operacion' %}">Tipos de operacion</a>
+                        <a class="collapse-item" href="{% url 'admin:denominacion' %}">Denominacion</a>
+                        <a class="collapse-item" href="{% url 'admin:registro_cajas' %}">Uso de cajas</a>
+                    </div>
+                </div>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -89,28 +114,25 @@
                 Productos
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin:insumos' %}" >
-                    <i class="fas fa-box-open"></i>
-                    <span>Insumos</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductos"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-hamburger"></i>
+                    <span>Productos</span>
                 </a>
-
+                <div id="collapseProductos" class="collapse"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opciones:</h6>
+                        <a class="collapse-item" href="{% url 'admin:alimentos' %}">Alimentos</a>
+                        <a class="collapse-item" href="{% url 'admin:combos' %}">Combos</a>
+                        <a class="collapse-item" href="{% url 'admin:productos' %}">Productos</a>
+                        <a class="collapse-item" href="{% url 'admin:promos' %}">Promociones</a>
+                        <a class="collapse-item" href="{% url 'admin:proveedores' %}">Proveedores</a>
+                    </div>
+                </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin:menu' %}">
-                    <i class="fab fa-elementor"></i>
-                    <span>Menu(Productos)</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin:promociones' %}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Promociones</span></a>
-            </li>
 
 
             <!-- Divider -->

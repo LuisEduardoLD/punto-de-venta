@@ -5,6 +5,7 @@ from apps.EmpleadosApp.models import User, typeUser
 class usuariosForm(forms.ModelForm):
     class Meta:
         model = User
+
         fields = [
             'is_active', 'id_typoUsuario', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'col', 'calle', 'numero_ext', 'numero_cel', 'fecha_nacimiento', 'username'
         ]
