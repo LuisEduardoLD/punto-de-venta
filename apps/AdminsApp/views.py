@@ -186,13 +186,11 @@ def alimentos(req):
 def combos(req):
     form = combosForm(req.POST or None)
     if req.method == 'POST' and form.is_valid():
-        combo = form.save(commit=False)
-        combo.save_m2m()
+        form.save()
         return redirect('admin:combos')
     else:
         validador_productos = CAT_Producto.objects.all().count()
         query = TBL_COMBOS.objects.all()
-        print(query)
         params = {
             'query': query,
             'form': form,
@@ -232,7 +230,6 @@ def promociones(req):
         return redirect('admin:promos')
     else:
         query = TBL_Promociones.objects.all()
-        print(query)
         params = {
             'query': query,
             'form': form,

@@ -76,14 +76,14 @@ class TBL_COMBOS(models.Model):
         return self.nombre
 
 
-def set_slug_COMBOS(sender, instance, *args, **kwargs):
-    slug = slugify(
-        '{}-{}'.format(instance.id_producto, str(uuid.uuid4())[:8])
-    )
-    instance.id_producto = slug
+# def set_slug_COMBOS(sender, instance, *args, **kwargs):
+#     slug = slugify(
+#         '{}-{}'.format(instance.id_producto, str(uuid.uuid4())[:8])
+#     )
+#     instance.id_producto = slug
 
 
-pre_save.connect(set_slug_COMBOS, sender=TBL_COMBOS)
+# pre_save.connect(set_slug_COMBOS, sender=TBL_COMBOS)
 
 
 class TBL_Promociones(models.Model):
