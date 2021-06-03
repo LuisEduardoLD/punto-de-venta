@@ -1,0 +1,124 @@
+{% extends 'Admins/navbar.html' %}
+{% load static %}
+
+
+{% block title %} Empleados {% endblock %}
+
+{% block css %}
+    <style>
+        #btnsubmit {
+            background: url(../../../static/recursos/img/trash.png) no-repeat;
+            width: 28px;
+            height: 28px;
+            border: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+
+        <div class="row justify-content-center mt-5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevousuarioModal">
+                Agregar empleado
+            </button>
+        </div>
+
+
+        <div class="row mt-5">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Activo</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in empleados %}
+                    <tr>
+                        <td>{{ i.first_name }}</td>
+                        <td>{{ i.apellido_paterno }} {{ i.apellido_materno }}</td>
+                        <td>{% if i.is_active %}
+                            <p>Activo</p>
+                        {% else %}
+                            <p>Inactivo</p>
+                        {% endif %} </td>
+                        <td>{{ i.numero_cel }}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'admin:actualizarempleado' i.pk %}"> <img
+                                            src="{% static 'recursos/img/actualizar.png' %}"></a>
+                                </div>
+
+                                <div class="col">
+                                    <form method="post" action="{% url 'admin:eliminarempleado' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="pk" value="{{ i.pk }}">
+                                        <input type="hidden" name="tipo" value="{{ tipo_usuario }}">
+                                        <button type="submit" id="btnsubmit"></button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="nuevousuarioModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo empleado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="form">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            {{ form.as_table }}
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnForm">
+                        Registrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block script %}
+
+         <script>
+        document.getElementById('btnForm').addEventListener('click', function () {
+            document.getElementById('form').submit()
+        })
+        </script>
+
+        <script src="{% static 'js/empleados/empleados.js' %}"></script>
+
+
+    {% endblock %}
+
+{% endblock %}

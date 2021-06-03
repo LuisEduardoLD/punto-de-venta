@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from apps.MeserosApp.models import TBL_Pedidos
+
+admin.site.register(TBL_Pedidos)
