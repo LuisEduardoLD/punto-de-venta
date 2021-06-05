@@ -17,6 +17,7 @@ class TBL_Pedidos(models.Model):
     entregado = models.BooleanField('Entregado', default=False)
     cantidad = models.IntegerField('Cantidad')
     pagado = models.BooleanField('Pagado', default=False)
+    active = models.BooleanField('Activo', default=True)
 
     class Meta:
         verbose_name = 'Pedido'

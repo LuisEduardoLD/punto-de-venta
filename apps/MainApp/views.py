@@ -1,4 +1,4 @@
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.shortcuts import render, redirect
 
 
@@ -17,6 +17,9 @@ def main_home(req):
                         return redirect('/meseros')
                     else:
                         return redirect('/cajeros')
+            else:
+                messages.error(req, 'Usaurio no valido')
+                return redirect('main:mainHome')
         except:
             print(req)
     else:

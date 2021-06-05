@@ -22,7 +22,7 @@ class combosForm(forms.ModelForm):
         widgets = {
             'id_producto': forms.SelectMultiple(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'selectpicker'
                 }
             ),
         }
@@ -74,3 +74,6 @@ class proveedoresForm(forms.ModelForm):
         fields = [
             'razon_social', 'telefono', 'cp', 'calle', 'no_ext', 'no_int', 'correo', 'colonia', 'estado', 'pais'
         ]
+
+
+

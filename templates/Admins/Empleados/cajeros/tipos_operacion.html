@@ -17,37 +17,70 @@
     </div>
 
     <div class="container">
-    {% if query %}
-
-        <table class="table table-striped mt-5">
-            <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            {% for i in query %}
-                <tr>
-                    <td>{{ i.nombre }}</td>
-                    <td>{{ i.descripcion }}</td>
-                </tr>
-            {% endfor %}
-
-
-            </tbody>
-        </table>
-
-    {% else %}
 
         <div class="row justify-content-md-center">
-            <div class="mt-5">
-                <h3>Por el momento no existen operaciones registradas</h3>
+            <div class=" mt-4 mb-5">
+                {% for message in messages %}
+                    {% if message.tags == "error" %}
+                        <p class="bg-danger" style="font-size: 24px; color: white;">{{ message }}</p>
+                    {% else %}
+                        <p class="bg-success" style="font-size: 24px; color: white;">{{ message }}</p>
+                    {% endif %}
+
+                {% endfor %}
             </div>
         </div>
 
-    {% endif %}
+        {% if query %}
+
+            <table class="table table-striped mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for i in query %}
+                    <tr>
+                        <td>{{ i.nombre }}</td>
+                        <td>{{ i.descripcion }}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'admin:actualizar_tipo_operacion' i.slug %}"> <img
+                                            src="{% static 'recursos/img/actualizar.png' %}"></a>
+                                </div>
+
+                                <div class="col">
+                                    <form method="post" action="{% url 'admin:eliminar_tipo_operacion' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="slug" value="{{ i.slug }}">
+                                        <button type="submit" id="btnsubmit"></button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+
+        {% else %}
+
+            <div class="row justify-content-md-center">
+                <div class="mt-5">
+                    <h3>Por el momento no existen operaciones registradas</h3>
+                </div>
+            </div>
+
+        {% endif %}
 
     </div>
 

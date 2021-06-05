@@ -27,6 +27,20 @@
         </div>
 
 
+    <div class="row justify-content-md-center">
+            <div class=" mt-4 mb-5">
+                {% for message in messages %}
+                    {% if message.tags == "error" %}
+                        <p class="bg-danger" style="font-size: 24px; color: white;">{{ message }}</p>
+                    {% else %}
+                        <p class="bg-success" style="font-size: 24px; color: white;">{{ message }}</p>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+
         <div class="row mt-5">
             <table class="table">
                 <thead class="thead-light">
@@ -52,12 +66,12 @@
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <a href="{% url 'admin:actualizarempleado' i.pk %}"> <img
+                                    <a href="{% url 'admin:actualizar_empleado' i.pk %}"> <img
                                             src="{% static 'recursos/img/actualizar.png' %}"></a>
                                 </div>
 
                                 <div class="col">
-                                    <form method="post" action="{% url 'admin:eliminarempleado' %}">
+                                    <form method="post" action="{% url 'admin:eliminar_empleado' %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="pk" value="{{ i.pk }}">
                                         <input type="hidden" name="tipo" value="{{ tipo_usuario }}">

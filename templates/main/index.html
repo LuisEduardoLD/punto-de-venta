@@ -11,25 +11,35 @@
     <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet">
 </head>
 <body class="text-center">
-    <main class="form-signin">
-        <form method="post">
-            {% csrf_token %}
-            <img class="mb-4" src="{% static 'recursos/img/user.png' %}" alt="" width="72" height="75">
-            <h1 class="h3 mb-3 fw-normal">Bienvenido</h1>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Nombre de usuario">
-            </div>
-            <div class="form-floating mt-3">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
-            </div>
-            <div class="checkbox mb-3">
-                <label>
-                    <a href="#">¿Olvidaste tu contraseña?</a>
-                </label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
-            <p class="mt-5 mb-3 text-muted">&copy; Sistema punto de venta</p>
-        </form>
-    </main>
+
+<main class="form-signin">
+
+    <div class="row justify-content-md-center">
+        <div class=" mt-4 mb-5 bg-danger">
+            {% for message in messages %}
+            <p style="font-size: 24px; color: white;">{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <img class="mb-4" src="{% static 'recursos/img/user.png' %}" alt="" width="72" height="75">
+        <h1 class="h3 mb-3 fw-normal">Bienvenido</h1>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Nombre de usuario">
+        </div>
+        <div class="form-floating mt-3">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+        <p class="mt-5 mb-3 text-muted">&copy; Sistema punto de venta</p>
+    </form>
+</main>
 </body>
 </html>
