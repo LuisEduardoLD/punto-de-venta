@@ -155,7 +155,7 @@ def tipo_operacion(req):
         form.save()
         return redirect('admin:tipo_operacion')
     else:
-        query = CAT_Tipo_Operacion.objects.all()
+        query = CAT_Tipo_Operacion.objects.filter(active=True)
         params = {
             'query': query,
             'form': form
@@ -184,7 +184,7 @@ def actualizarTipo_operacion(req, slug):
 def eliminar_Tipo_operacion(req):
     slug = req.POST['slug']
     if req.method == 'POST':
-        CAT_Tipo_Operacion.objects.filter(slug=slug).update(is_active=False)
+        CAT_Tipo_Operacion.objects.filter(slug=slug).update(active=False)
         return redirect('admin:tipo_operacion')
 
 

@@ -49,7 +49,7 @@ urlpatterns = [
     # URLs para ver el manejo de los Alimentos
     path('productos', productos, name='productos'),
     path('actualizar_productos/<slug:slug>', actualizarProductos, name='actualizar_productos'),
-    path('eliminar_productos/', productos, name='eliminar_productos'),
+    path('eliminar_productos/', eliminar_Producto, name='eliminar_productos'),
 
     # URLs para ver el manejo de las promociones
     path('promociones', promociones, name='promos'),
