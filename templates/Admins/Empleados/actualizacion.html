@@ -1,0 +1,20 @@
+{% extends 'Admins/navbar.html' %}
+
+    {% block title %}Actualizar{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div class="col-md-6">
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ tipo }}" name="t">
+            {{ form.as_p }}
+
+            <div class="row justify-content-md-center mt-5">
+                <button type="submit" class="btn btn-success">Actualizar</button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+{% endblock %}

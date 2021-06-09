@@ -1,0 +1,102 @@
+{% extends 'Admins/navbar.html' %}
+{% load static %}
+
+
+{% block title %} Denominaciones {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="row justify-content-md-center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarDenominacionModal">
+            Agregar denominacion
+        </button>
+    </div>
+
+    <div class="row justify-content-md-center">
+            <div class=" mt-4 mb-5">
+                {% for message in messages %}
+                    {% if message.tags == "error" %}
+                        <p class="bg-danger" style="font-size: 24px; color: white;">{{ message }}</p>
+                    {% else %}
+                        <p class="bg-success" style="font-size: 24px; color: white;">{{ message }}</p>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+    <div class="container">
+    {% if query %}
+
+        <table class="table table-striped mt-5">
+            <thead>
+            <tr>
+                <th scope="col">Valor(MXN)</th>
+                <th scope="col">Tipo de moneda</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for i in query %}
+                <tr>
+                    <td>{{ i.valor }}</td>
+                    <td>{{ i.tipo_moneda }}</td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <div class="row justify-content-md-center">
+            <div class="mt-5">
+                <h3>Por el momento no existen denominaciones registradas</h3>
+            </div>
+        </div>
+
+    {% endif %}
+
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="agregarDenominacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar denominacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-success mt-5" type="submit">
+                            Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block script %}
+
+
+
+    {% endblock %}
+
+{% endblock %}
