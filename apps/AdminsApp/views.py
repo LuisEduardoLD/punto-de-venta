@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
@@ -40,7 +41,9 @@ def empleados(req, tipo):
         print('entro post', form.is_valid())
     if req.method == 'POST' and form.is_valid():
         print('entro')
-        insersion = form.save()
+        insersion = form.save(commit=False)
+        insersion.password = make_password(insersion.password)
+        insersion.save()
         if insersion:
             messages.success(req, 'Insersion correcta')
             return redirect('admin:empleados', tipo)
