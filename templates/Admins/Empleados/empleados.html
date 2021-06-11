@@ -18,15 +18,6 @@
 {% block body %}
 
     <div class="container">
-
-
-        <div class="row justify-content-center mt-5">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevousuarioModal">
-                Agregar empleado
-            </button>
-        </div>
-
-
     <div class="row justify-content-md-center">
             <div class=" mt-4 mb-5">
                 {% for message in messages %}
@@ -53,7 +44,38 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in empleados %}
+                {% for i in empleados %}              
+                <div class="card " style="width: 18rem;" href="www.google.com">
+                    <img src="/static/recursos/img/empleado.png" class="card-img-top employee" alt="default image created for a new employee">
+                   
+                    <style>
+                        .employee {
+                        width: 50%;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        padding-top: 10%;
+                        }
+                    </style>
+                     <style>
+                        .status {
+                            width: 8%;
+                            height: 8%;
+                        }
+                    </style>
+
+                    <div class="card-body">
+                      <h5 class="card-title">{{i.first_name}} {{i.apellido_paterno}} {{i.apellido_materno}}</h5>                   
+                      <a href="{% url 'admin:actualizar_empleado' i.pk %}" class="btn btn-primary">Modificar</a>
+                      <a href="#" class="btn btn-danger">Eliminar</a>
+                    </div>
+                    {% if i.is_active %}
+                            <img src="/static/recursos/img/active.png" class="status">
+                        {% else %}
+                            <img src="/static/recursos/img/inactive.png" class="status">
+                        {% endif %}
+                </div>
+                  </div>
                     <tr>
                         <td>{{ i.first_name }}</td>
                         <td>{{ i.apellido_paterno }} {{ i.apellido_materno }}</td>
@@ -86,11 +108,7 @@
                 </tbody>
             </table>
         </div>
-
     </div>
-
-
-
     <!-- Modal -->
     <div class="modal fade" id="nuevousuarioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -119,6 +137,14 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    
+
+    <div class="row justify-content-center mt-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevousuarioModal">
+            Agregar empleado
+        </button>
     </div>
 
 
