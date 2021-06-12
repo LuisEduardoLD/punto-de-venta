@@ -32,7 +32,7 @@ class MyAccountManager(BaseUserManager):
         return user
 
 class typeUser(models.Model):
-    puesto = models.CharField('Puesto de trabajo', max_length=25)
+    puesto = models.CharField('', max_length=25) #quite Puesto de trabajo, no se si te afecte.
 
     class Meta:
         verbose_name = 'Tipo de usuario'
@@ -44,7 +44,7 @@ class typeUser(models.Model):
 
 class User(AbstractUser):
     id = models.BigAutoField(primary_key=True)
-    email = models.EmailField('Email', max_length=70, unique=False, default='', blank=True)
+    email = models.EmailField('', max_length=70, unique=False, default='', blank=True)
 
     date_joined = models.DateTimeField('Fecha de registro', auto_now_add=True)
     last_login = models.DateTimeField('Ultimo ingreso', auto_now=True)
@@ -54,8 +54,8 @@ class User(AbstractUser):
     is_superuser = models.BooleanField('SuperUsuario', default=False)
 
     id_typoUsuario = models.ForeignKey(typeUser, on_delete=models.CASCADE, null=True)
-    first_name = models.CharField('Nombre', max_length=255)
-    apellido_paterno = models.CharField('Apellido Paterno', max_length=255, default='')
+    first_name = models.CharField('', max_length=255)
+    apellido_paterno = models.CharField('', max_length=255, default='')
     apellido_materno = models.CharField('Apellido Materno', max_length=255, default='')
     col = models.CharField('Colonia', max_length=255)
     calle = models.CharField('Calle', max_length=255)

@@ -7,29 +7,33 @@ class usuariosForm(forms.ModelForm):
         model = User
 
         fields = [
-            'is_active', 'id_typoUsuario', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'col', 'calle', 'numero_ext', 'numero_cel', 'fecha_nacimiento', 'username', 'password'
+             'id_typoUsuario', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'col', 'calle', 'numero_ext', 'numero_cel', 'fecha_nacimiento', 'username', 'password','is_active'
         ]
 
         widgets = {
             'is_active': forms.CheckboxInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control col-3',
+                    'style': 'margin: 3px'
                 }
             ),
             'id_typoUsuario': forms.Select(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control col-4',
+                    'style': 'margin: 3px'
                 }
             ),
             'first_name': forms.TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Ingresa el nombre'
+                    'placeholder':'Ingresa el nombre',
+                    'style': 'margin: 3px'
                 }
             ),
             'apellido_paterno': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder':'Apellido Paterno'
                 }
             ),
             'apellido_materno': forms.TextInput(
@@ -39,8 +43,9 @@ class usuariosForm(forms.ModelForm):
             ),
             'email': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'type': 'email'
+                    'class': 'form-control col-4',
+                    'type': 'email',
+                    'placeholder': 'E-mail'
                 }
             ),
             'col': forms.TextInput(

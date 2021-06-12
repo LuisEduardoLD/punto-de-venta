@@ -5,17 +5,6 @@
 {% block body %}
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <div class="row mt-3">
-                    <button type="submit" class="btn btn-success">Registrar</button>
-                </div>
-            </form>
-        </div>
-        </div>
 
     <div class="row justify-content-md-center">
         <div class=" mt-4 mb-5 bg-danger">
@@ -24,9 +13,25 @@
             {% endfor %}
         </div>
     </div>
+        
+    <div class="">
+        <div style="text-align: right; margin: 2px; ">
+            <button class="btn btn-primary" data-toggle="collapse" data-target="#demo" >Nuevo puesto</button>
+        
+        <div id="demo" class="collapse" style="text-align: center; align-content: center;  " >
+            <div class="col-md-3" style=" text-align: center; display: inline-block; ">
+            <form method="post">
+                {{ form }}
+                    <button type="submit" class="btn btn-success" style="margin: 5px;">Registrar</button>
+            </form>
+        </div>
+        </div>
+
+        </div>
+        
+        
 
 
-    <div class="row justify-content-center mt-5">
         <table class="table">
   <thead class="thead-dark">
     <tr>

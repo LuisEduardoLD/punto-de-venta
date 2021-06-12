@@ -19,14 +19,6 @@
 
     <div class="container">
 
-
-        <div class="row justify-content-center mt-5">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevousuarioModal">
-                Agregar empleado
-            </button>
-        </div>
-
-
     <div class="row justify-content-md-center">
             <div class=" mt-4 mb-5">
                 {% for message in messages %}
@@ -40,7 +32,12 @@
             </div>
         </div>
 
-
+        <div style="text-align: right; margin: 2px; ">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevousuarioModal">
+                Agregar empleado
+            </button>
+        </div>
+        
         <div class="row mt-5">
             <table class="table">
                 <thead class="thead-light">
@@ -93,7 +90,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="nuevousuarioModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Nuevo empleado</h5>
