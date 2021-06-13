@@ -18,4 +18,5 @@ def meseroIndex(req):
             'form': form,
             'query': query
         }
+        query2 = TBL_Pedidos.objects.select_related()
         return render(req, 'Empleados/Meseros/index.html', params)

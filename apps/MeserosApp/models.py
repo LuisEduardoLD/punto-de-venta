@@ -30,6 +30,9 @@ class TBL_Pedidos(models.Model):
 
     def __str__(self):
         return self.mesa
+    
+    def __str__(self):
+        return self.id_usuario
 
 def set_slug_Pedidos(sender, instance, *args, **kwargs):
     slug = slugify(

@@ -3,59 +3,42 @@
 
 {% block body %}
 
-    <div class="container">
-
-        <div class="row justify-content-md-center">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoPedido">
-                Nuevo pedido
-            </button>
-        </div>
-
-
-    <div class="row justify-content-md-center">
-
-        <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">Mesa</th>
-                    <th scope="col">Numero de orden</th>
-                    <th scope="col">Opciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in query %}
-                <tr>
-                <td>{{ i.mesa }}</td>
-                <td>{{ i.numero_orden }}</td>
-
-                                     <td>
-                            <div class="row">
-                                <div class="col">
-                                    <a href="#"> <img
-                                            src="{% static 'recursos/img/actualizar.png' %}"></a>
-                                </div>
-
-                                <div class="col">
-                                    <form method="post" action="#">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="pk" value="{{ i.pk }}">
-                                        <button type="submit" id="btnsubmit"></button>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </td>
-
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
-    </div>
-
-
-    </div>
-
+<div class="container">
+  <div class="row justify-content-md-center">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Mesa</th>
+          <th scope="col">Numero de orden</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+        <tbody>                 
+          {% for i in query %}
+          <tr>
+            <td>{{ i.mesa }}</td>
+            <td>{{ i.numero_orden }} {{i.id_usuario}}</td> 
+            <td>
+              <div class="row">
+                <div class="col">
+                  <a href="#"> <img
+                    src="{% static 'recursos/img/actualizar.png' %}"></a>
+                </div>
+                <div class="col">
+                  <form method="post" action="#">
+                    {% csrf_token %}
+                      <input type="hidden" name="pk" value="{{ i.pk }}">
+                      <button type="submit" id="btnsubmit"></button>
+                  </form>
+                </div>
+              </div>
+            </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
 
     <!-- Modal -->
 <div class="modal fade" id="nuevoPedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,20 +50,131 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-
-            <button type="submit" class="btn bg-success">Guardar</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-body">  
+        <form method="POST">
+          {% csrf_token %}
+         <!--{{ form.as_p }}--> 
+          <div class="form-group row">
+            <label class="col-4 col-form-label" for="mesa">Mesa</label> 
+            <div class="col-8">
+              <select id="mesa" name="mesa" required="required" class="custom-select">
+                <option value="1">Mesa 1</option>
+                <option value="2">Mesa 2</option>
+                <option value="3">Mesa 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="producto" class="col-4 col-form-label">Producto</label> 
+            <div class="col-8">
+              <select id="id_producto" name="id_producto" required="required" class="custom-select">
+                <option value="1">Producto 1</option>
+                <option value="2">Producto 2</option>
+                <option value="3">Producto 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="cantidad" class="col-4 col-form-label">Cantidad</label> 
+            <div class="col-8">
+              <select id="cantidad" name="cantidad" class="custom-select" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="descripcion" class="col-4 col-form-label">Descripcion</label> 
+            <div class="col-8">
+              <textarea id="descripcion" name="descripcion" cols="40" rows="5" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="combo" class="col-4 col-form-label">Combo</label> 
+            <div class="col-8">
+              <select id="id_combo" name="id_combo" required="required" class="custom-select">
+                <option value="0">Sin combo</option>
+                <option value="1">Combo 1</option>
+                <option value="2">Combo 2</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="promocion" class="col-4 col-form-label">Promocion</label> 
+            <div class="col-8">
+              <select id="id_promocion" name="id_promocion" required="required" class="custom-select">
+                <option value="0">Sin promocion</option>
+                <option value="1">Promocion 1</option>
+                <option value="2">Promocion 2</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4">Estado</label> 
+            <div class="col-8">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="estado" id="estado_0" type="radio" class="custom-control-input" value="1" required="required"> 
+                <label for="estado_0" class="custom-control-label">Entregado</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="estado" id="estado_1" type="radio" class="custom-control-input" value="0" required="required"> 
+                <label for="estado_1" class="custom-control-label">Sin entregar</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4">Pagado</label> 
+            <div class="col-8">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="1" required="required"> 
+                <label for="radio_0" class="custom-control-label">Pagado</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="radio" id="radio_1" type="radio" required="required" class="custom-control-input" value="0"> 
+                <label for="radio_1" class="custom-control-label">Sin pagar</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4">Activo</label> 
+            <div class="col-8">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="activo" id="activo_0" type="radio" class="custom-control-input" value="1" required="required"> 
+                <label for="activo_0" class="custom-control-label">Activo</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="activo" id="activo_1" type="radio" required="required" class="custom-control-input" value="2"> 
+                <label for="activo_1" class="custom-control-label">Inactivo</label>
+              </div>
+            </div>
+          </div> 
+          <div class="form-group row">
+            <label for="id_alimento" class="col-4 col-form-label">id_Alimento</label> 
+            <div class="col-8">
+              <select id="id_alimento" name="id_alimento" class="custom-select" required="required">
+                <option value="1">Alimento 1</option>
+              </select>
+            </div>
+          </div> 
+          <div class="form-group row">
+            <div class="offset-4 col-8">
+              <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div> 
+        </form>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button name="submit" type="submit" class="btn btn-primary">Enviar pedido</button>
+        </div>        
       </div>
     </div>
   </div>
+</div>
+<div class="row justify-content-md-center">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoPedido">
+      Nuevo pedido
+  </button>
 </div>
 
 {% endblock %}
