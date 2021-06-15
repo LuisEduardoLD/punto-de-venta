@@ -12,6 +12,13 @@
             height: 28px;
             border: none;
         }
+        /* Aqui no funciona el css... por que? T.T 
+        label {
+            display: none;
+        }
+
+        <link href="{% static 'css/extras/empleados.css' %}" rel="stylesheet">
+*/
     </style>
 {% endblock %}
 
@@ -101,6 +108,25 @@
                 <div class="modal-body">
                     <form method="post" id="form">
                         {% csrf_token %}
+<!--
+    de esta forma no puedo registrar
+                        <div class="row">
+                            <p>Nombre:</p>{{form.first_name}}
+                            <p>Apellido Paterno:</p>{{form.apellido_paterno}}
+                            <p>Apellido Materno:</p>{{form.apellido_materno}}
+                            <p>email:</p>{{form.email}}
+                            <p>Puesto:</p>{{form.id_typoUsuario}}
+                            <p>Colonia:</p>{{form.col}}
+                            <p>Calle:</p>{{form.calle}}
+                            <p>Numero exterior:</p>{{form.numero_ext}}
+                            <p>Numero de celular:</p>{{form.numero_cel}}
+                            <p>Fecha de nacimiento:</p>{{form.fecha_nacimiento}}
+                            <p>Username:</p>{{form.username}}
+                            <p>Password:</p>{{form.password}}
+                            <p>Activo:</p>{{form.is_active}}
+
+                        </div>
+-->
 
                         <div class="row">
                             {{ form.as_table }}

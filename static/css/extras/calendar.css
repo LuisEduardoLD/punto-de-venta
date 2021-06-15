@@ -1,0 +1,10 @@
+#fecha_nac{
+	display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+
+}
+label{
+        display: none;
+        }
