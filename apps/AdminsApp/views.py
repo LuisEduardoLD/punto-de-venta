@@ -1,4 +1,5 @@
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
@@ -44,9 +45,11 @@ def empleados(req, tipo):
         insersion = form.save(commit=False)
         insersion.password = make_password(insersion.password)
         insersion.save()
+        print(insersion.fecha_nacimiento)
         if insersion:
             messages.success(req, 'Insersion correcta')
             return redirect('admin:empleados', tipo)
+
         else:
             messages.error(req, 'Hubo problemas al realizar la insersion')
             return redirect('admin:empleados', tipo)

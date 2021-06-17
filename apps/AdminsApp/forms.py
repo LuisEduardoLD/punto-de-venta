@@ -112,6 +112,7 @@ class usuariosForm(forms.ModelForm):
             ),
         }
 
+
 class puestoForm(forms.ModelForm):
     class Meta:
         model = typeUser
