@@ -7,7 +7,7 @@ class alimentosForm(forms.ModelForm):
         model = CAT_ALIMENTOS
 
         fields = [
-            'nombre', 'categoria', 'descripcion', 'precio'
+            'nombre', 'id_categoria', 'descripcion', 'precio'
         ]
 
 
@@ -41,7 +41,7 @@ class ProductosForm(forms.ModelForm):
     class Meta:
         model = CAT_Producto
         fields = [
-            'nombre', 'descripcion', 'categoria', 'activo', 'precio', 'cantidad'
+            'nombre', 'descripcion', 'id_categoria', 'activo', 'precio', 'cantidad'
         ]
 
         widgets = {

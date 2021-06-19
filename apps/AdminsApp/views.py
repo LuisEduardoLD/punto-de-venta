@@ -108,6 +108,53 @@ def pedidos(req):
 
 # <!--------------------- Aqui empiezan las URLs para el manejo de las cajas ---------->
 
+def categorias(req):
+    form = categoriasForm(req.POST or None)
+    if req.method == 'POST' and form.is_valid():
+        insersion = form.save()
+        if insersion:
+            messages.success(req, 'Categoria agregada con exito')
+            return redirect('admin:categorias')
+    else:
+        query = TBL_CATEGORIA_ALIMENTOS.objects.all()
+
+        params = {
+            'query': query,
+            'form': form
+        }
+        return render(req, 'Admins/Alimentos/categorias/index.html', params)
+
+
+def actualizarCategorias(req, slug):
+    query = TBL_CATEGORIA_ALIMENTOS.objects.get(slug=slug)
+    form = categoriasForm(req.POST or None, instance=query)
+    if req.method == 'POST' and form.is_valid():
+        actualizacion = form.save()
+        if actualizacion:
+            messages.success(req, 'Actualizacion de la categoria')
+            return redirect('admin:categorias')
+        else:
+            messages.error(req, 'Hubo problemas al realizar la actualizacion')
+            return redirect('admin:categorias')
+    else:
+        params = {
+            'form': form
+        }
+        return render(req, 'Admins/Alimentos/categorias/index.html', params)
+
+
+def eliminar_Categorias(req):
+    slug = req.POST['slug']
+    if req.method == 'POST':
+        TBL_CATEGORIA_ALIMENTOS.objects.filter(slug=slug).update(is_active=False)
+        return redirect('admin:categorias')
+
+
+# <!--------------------- Aqui terminan las URLs para el manejo de las cajas ---------->
+
+
+# <!--------------------- Aqui empiezan las URLs para el manejo de las cajas ---------->
+
 def cajas(req):
     form = cajasForm(req.POST or None)
     if req.method == 'POST' and form.is_valid():

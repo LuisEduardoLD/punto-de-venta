@@ -6,6 +6,31 @@ from django.utils.text import slugify
 
 from ..EmpleadosApp.models import User
 
+
+class TBL_CATEGORIA_ALIMENTOS(models.Model):
+    nombre = models.CharField('Nombre de la categoria', max_length=255, default='')
+    tipo = models.CharField('Tipo de la categoria', blank=True, max_length=255, default='')
+    active = models.BooleanField('Activo', default=True)
+    slug = models.CharField('Nombre de la categoria', max_length=255, default='')
+
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
+    def __str__(self):
+        return self.nombre
+
+
+def set_slug_CATEGORIA_ALIMENTOS(sender, instance, *args, **kwargs):
+    slug = slugify(
+        '{}-{}'.format(instance.slug, str(uuid.uuid4())[:8])
+    )
+    instance.slug = slug
+
+
+pre_save.connect(set_slug_CATEGORIA_ALIMENTOS, sender=TBL_CATEGORIA_ALIMENTOS)
+
+
 class Cat_Proveedores(models.Model):
     razon_social = models.CharField('Razon social', max_length=255, default='')
     telefono = models.CharField('Telefono', max_length=10, default='')
@@ -27,6 +52,7 @@ class Cat_Proveedores(models.Model):
     def __str__(self):
         return self.razon_social
 
+
 def set_slug_Proveedores(sender, instance, *args, **kwargs):
     slug = slugify(
         '{}-{}'.format(instance.razon_social, str(uuid.uuid4())[:8])
@@ -40,7 +66,7 @@ pre_save.connect(set_slug_Proveedores, sender=Cat_Proveedores)
 class CAT_Producto(models.Model):
     nombre = models.CharField('Nombre', max_length=255, default='')
     descripcion = models.CharField('Descripcion', max_length=255, default='')
-    categoria = models.CharField('Categoria', max_length=255, default='')
+    id_categoria = models.ForeignKey(TBL_CATEGORIA_ALIMENTOS, on_delete=models.CASCADE)
     activo = models.BooleanField('Activo', default=True)
     precio = models.DecimalField(max_digits=20, decimal_places=2)
     cantidad = models.IntegerField('Cantidad', blank=True, null=True)
@@ -152,7 +178,7 @@ pre_save.connect(set_slug_Promociones, sender=TBL_Promociones)
 class CAT_ALIMENTOS(models.Model):
     nombre = models.CharField('Nombre', max_length=255, default='')
     descripcion = models.CharField('Descripcion', max_length=255, default='')
-    categoria = models.CharField('Categoria', max_length=255, default='')
+    id_categoria = models.ForeignKey(TBL_CATEGORIA_ALIMENTOS, on_delete=models.CASCADE)
     precio = models.DecimalField('Precio', decimal_places=2, max_digits=99999)
     active = models.BooleanField('Activo', default=True)
     slug = models.CharField(max_length=100, null=False, blank=False, unique=True, default='')

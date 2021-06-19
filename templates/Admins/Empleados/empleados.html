@@ -106,8 +106,7 @@
                 <div class="modal-body">
                     <form method="post" id="form">
                         {% csrf_token %}
-<!--
-    de esta forma no puedo registrar
+
                         <div class="row">
                             <p>Nombre:</p>{{form.first_name}}
                             <p>Apellido Paterno:</p>{{form.apellido_paterno}}
@@ -121,14 +120,14 @@
                             <p>Fecha de nacimiento:</p>{{form.fecha_nacimiento}}
                             <p>Username:</p>{{form.username}}
                             <p>Password:</p>{{form.password}}
-                            <p>Activo:</p>{{form.is_active}}
+{#                            <p>Activo:</p>{{form.is_active}}#}
 
                         </div>
--->
 
-                        <div class="row">
-                            {{ form.as_table }}
-                        </div>
+
+{#                        <div class="row">#}
+{#                            {{ form.as_table }}#}
+{#                        </div>#}
 
                     </form>
                 </div>

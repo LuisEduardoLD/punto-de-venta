@@ -23,6 +23,7 @@
         <div id="demo" class="collapse" style="text-align: center; align-content: center;  " >
             <div class="col-md-3" style=" text-align: center; display: inline-block; ">
             <form method="post">
+                {% csrf_token %}
                 {{ form }}
                     <button type="submit" class="btn btn-success" style="margin: 5px;">Registrar</button>
             </form>

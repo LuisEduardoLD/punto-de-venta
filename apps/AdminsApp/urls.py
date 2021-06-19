@@ -14,7 +14,11 @@ urlpatterns = [
 
     # URLs para ver los pedidos
     path('pedidos', pedidos, name='pedidos'),
-    path('actualizar_pedidos/<slug:slug>', pedidos, name='pedidos'),
+    path('actualizar_pedidos/<slug:slug>', pedidos, name='actualizar_pedidos'),
+
+    # URLs para agregar categorias de alimentos
+    path('categorias', categorias, name='categorias'),
+    path('actualizar_categorias/<slug:slug>', categorias, name='actualizar_categorias'),
 
     # URLs para ver las cajas
     path('cajas', cajas, name='cajas'),

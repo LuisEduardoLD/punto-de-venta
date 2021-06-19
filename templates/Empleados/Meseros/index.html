@@ -19,28 +19,23 @@
                 <tr>
                     <th scope="col">Mesa</th>
                     <th scope="col">Numero de orden</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col-2">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for i in query %}
                 <tr>
-                <td>{{ i.mesa }}</td>
+                <td>{{ i.numero_mesa }}</td>
                 <td>{{ i.numero_orden }}</td>
 
                                      <td>
                             <div class="row">
                                 <div class="col">
-                                    <a href="#"> <img
-                                            src="{% static 'recursos/img/actualizar.png' %}"></a>
+                                    <a href="{% url 'meseros:ver_pedido' i.slug %}"> <img src="{% static 'recursos/img/actualizar.png' %}"></a>
                                 </div>
 
                                 <div class="col">
-                                    <form method="post" action="#">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="pk" value="{{ i.pk }}">
-                                        <button type="submit" id="btnsubmit"></button>
-                                    </form>
+                                    <a href="#">Cancelar orden</a>
 
                                 </div>
                             </div>
